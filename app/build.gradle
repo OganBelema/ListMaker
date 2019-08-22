@@ -8,6 +8,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
+        dataBinding.enabled = true
         applicationId "com.oganbelema.listmaker"
         minSdkVersion 21
         targetSdkVersion 29
