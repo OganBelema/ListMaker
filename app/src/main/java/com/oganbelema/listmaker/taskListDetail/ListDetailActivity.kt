@@ -1,7 +1,10 @@
-package com.oganbelema.listmaker
+package com.oganbelema.listmaker.taskListDetail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.oganbelema.listmaker.LIST_KEY
+import com.oganbelema.listmaker.R
+import com.oganbelema.listmaker.TaskList
 
 class ListDetailActivity : AppCompatActivity() {
 

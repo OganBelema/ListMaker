@@ -1,4 +1,4 @@
-package com.oganbelema.listmaker
+package com.oganbelema.listmaker.taskList
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,9 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import com.oganbelema.listmaker.*
 import com.oganbelema.listmaker.databinding.ActivityMainBinding
+import com.oganbelema.listmaker.taskListDetail.ListDetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,13 +30,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        activityMainBinding = DataBindingUtil.setContentView(this,
+            R.layout.activity_main
+        )
 
         setSupportActionBar(activityMainBinding.toolbar)
 
         val taskLists = listDataManager.readList()
 
-        listSelectionRecyclerViewAdapter = ListSelectionRecyclerViewAdapter(taskLists, showListDetail)
+        listSelectionRecyclerViewAdapter =
+            ListSelectionRecyclerViewAdapter(
+                taskLists,
+                showListDetail
+            )
 
         activityMainBinding.secondaryLayout
             .listRecyclerView.adapter = listSelectionRecyclerViewAdapter

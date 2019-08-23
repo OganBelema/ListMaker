@@ -1,7 +1,8 @@
-package com.oganbelema.listmaker
+package com.oganbelema.listmaker.taskList
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.oganbelema.listmaker.TaskList
 
 /**
  * Created by Belema Ogan on 2019-08-22.

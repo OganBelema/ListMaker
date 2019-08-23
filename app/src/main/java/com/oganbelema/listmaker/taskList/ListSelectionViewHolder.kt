@@ -1,8 +1,9 @@
-package com.oganbelema.listmaker
+package com.oganbelema.listmaker.taskList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.oganbelema.listmaker.TaskList
 import com.oganbelema.listmaker.databinding.ListItemBinding
 
 /**
@@ -24,9 +25,11 @@ class ListSelectionViewHolder(private val listItemBinding: ListItemBinding) :
     }
 
     companion object {
-        fun from(parent: ViewGroup): ListSelectionViewHolder{
-            return ListSelectionViewHolder(ListItemBinding
-                .inflate(LayoutInflater.from(parent.context), parent, false))
+        fun from(parent: ViewGroup): ListSelectionViewHolder {
+            return ListSelectionViewHolder(
+                ListItemBinding
+                    .inflate(LayoutInflater.from(parent.context), parent, false)
+            )
         }
     }
 
