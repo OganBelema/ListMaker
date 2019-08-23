@@ -7,7 +7,7 @@ import com.oganbelema.listmaker.TaskList
 /**
  * Created by Belema Ogan on 2019-08-22.
  */
-class ListSelectionRecyclerViewAdapter(private val taskLists: ArrayList<TaskList>,
+class ListSelectionRecyclerViewAdapter(private var taskLists: ArrayList<TaskList>,
                                        private val clickLister : (taskList: TaskList) -> Unit)
     : RecyclerView.Adapter<ListSelectionViewHolder>() {
 
@@ -23,6 +23,11 @@ class ListSelectionRecyclerViewAdapter(private val taskLists: ArrayList<TaskList
 
     fun addList(taskList: TaskList) {
         taskLists.add(taskList)
+        notifyDataSetChanged()
+    }
+
+    fun replaceList(taskLists: ArrayList<TaskList>) {
+        this.taskLists = taskLists
         notifyDataSetChanged()
     }
 

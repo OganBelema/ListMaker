@@ -1,5 +1,7 @@
 package com.oganbelema.listmaker.taskListDetail
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
@@ -54,5 +56,14 @@ class ListDetailActivity : AppCompatActivity() {
         }
 
         builder.create().show()
+    }
+
+    override fun onBackPressed() {
+        val data = Bundle()
+        data.putParcelable(LIST_KEY, taskList)
+        val intent = Intent()
+        intent.putExtras(data)
+        setResult(Activity.RESULT_OK, intent)
+        super.onBackPressed()
     }
 }
