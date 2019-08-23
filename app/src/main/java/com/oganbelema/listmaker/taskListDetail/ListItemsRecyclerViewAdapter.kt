@@ -18,4 +18,9 @@ class ListItemsRecyclerViewAdapter(private val taskList: TaskList): RecyclerView
     override fun onBindViewHolder(holder: ListItemViewHolder, position: Int) {
         holder.bind(taskList.tasks[position])
     }
+
+    fun addTask(task: String) {
+        taskList.tasks.add(task)
+        notifyItemInserted(taskList.tasks.size)
+    }
 }
