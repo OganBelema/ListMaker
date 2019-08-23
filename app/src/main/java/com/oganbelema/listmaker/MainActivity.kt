@@ -1,10 +1,12 @@
 package com.oganbelema.listmaker
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.oganbelema.listmaker.databinding.ActivityMainBinding
 
@@ -22,9 +24,8 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.secondaryLayout
             .listRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
 
-        activityMainBinding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        activityMainBinding.fab.setOnClickListener {
+            showCreateListDialog()
         }
     }
 
@@ -42,5 +43,21 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showCreateListDialog(){
+        val dialogTitle = getString(R.string.name_of_list)
+        val positiveButtonTitle = getString(R.string.create_list)
+
+        val builder = AlertDialog.Builder(this)
+        val listTitleEditText = EditText(this)
+        listTitleEditText.inputType = InputType.TYPE_CLASS_TEXT
+        builder.setTitle(dialogTitle)
+        builder.setView(listTitleEditText)
+        builder.setPositiveButton(positiveButtonTitle){ dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+
+        builder.create().show()
     }
 }
