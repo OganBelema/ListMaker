@@ -11,9 +11,9 @@ import com.oganbelema.listmaker.databinding.ListItemBinding
 class ListSelectionViewHolder(private val listItemBinding: ListItemBinding) :
     RecyclerView.ViewHolder(listItemBinding.root) {
 
-    fun bindItems(position: Int, item: String) {
+    fun bindItems(position: Int, taskList: TaskList) {
         listItemBinding.itemNumber.text = position.toString()
-        listItemBinding.itemString.text = item
+        listItemBinding.itemString.text = taskList.name
     }
 
     companion object {

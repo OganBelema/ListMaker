@@ -14,6 +14,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var activityMainBinding: ActivityMainBinding
 
+    private lateinit var listSelectionRecyclerViewAdapter: ListSelectionRecyclerViewAdapter
+
+    private val listDataManager = ListDataManager(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,8 +25,12 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(activityMainBinding.toolbar)
 
+        val taskLists = listDataManager.readList()
+
+        listSelectionRecyclerViewAdapter = ListSelectionRecyclerViewAdapter(taskLists)
+
         activityMainBinding.secondaryLayout
-            .listRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
+            .listRecyclerView.adapter = listSelectionRecyclerViewAdapter
 
         activityMainBinding.fab.setOnClickListener {
             showCreateListDialog()
@@ -55,6 +63,9 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle(dialogTitle)
         builder.setView(listTitleEditText)
         builder.setPositiveButton(positiveButtonTitle){ dialogInterface, _ ->
+            val taskList = TaskList(listTitleEditText.text.toString())
+            listDataManager.saveList(taskList)
+            listSelectionRecyclerViewAdapter.addList(taskList)
             dialogInterface.dismiss()
         }
 
