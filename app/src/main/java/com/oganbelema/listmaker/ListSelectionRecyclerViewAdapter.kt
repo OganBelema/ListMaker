@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Created by Belema Ogan on 2019-08-22.
  */
-class ListSelectionRecyclerViewAdapter(private val taskLists: ArrayList<TaskList>)
+class ListSelectionRecyclerViewAdapter(private val taskLists: ArrayList<TaskList>,
+                                       private val clickLister : (taskList: TaskList) -> Unit)
     : RecyclerView.Adapter<ListSelectionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListSelectionViewHolder {
@@ -16,7 +17,7 @@ class ListSelectionRecyclerViewAdapter(private val taskLists: ArrayList<TaskList
     override fun getItemCount(): Int = taskLists.size
 
     override fun onBindViewHolder(holder: ListSelectionViewHolder, position: Int) {
-        holder.bindItems(position + 1, taskLists[position])
+        holder.bindItems(position + 1, taskLists[position], clickLister)
     }
 
     fun addList(taskList: TaskList) {

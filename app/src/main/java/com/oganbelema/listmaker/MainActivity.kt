@@ -1,5 +1,6 @@
 package com.oganbelema.listmaker
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,12 @@ class MainActivity : AppCompatActivity() {
 
     private val listDataManager = ListDataManager(this)
 
+    private val showListDetail: (list: TaskList) -> Unit = {
+        val listDetailIntent = Intent(this, ListDetailActivity::class.java)
+        listDetailIntent.putExtra(LIST_KEY, it)
+        startActivity(listDetailIntent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         val taskLists = listDataManager.readList()
 
-        listSelectionRecyclerViewAdapter = ListSelectionRecyclerViewAdapter(taskLists)
+        listSelectionRecyclerViewAdapter = ListSelectionRecyclerViewAdapter(taskLists, showListDetail)
 
         activityMainBinding.secondaryLayout
             .listRecyclerView.adapter = listSelectionRecyclerViewAdapter
@@ -67,8 +74,10 @@ class MainActivity : AppCompatActivity() {
             listDataManager.saveList(taskList)
             listSelectionRecyclerViewAdapter.addList(taskList)
             dialogInterface.dismiss()
+            showListDetail(taskList)
         }
 
         builder.create().show()
     }
+
 }
